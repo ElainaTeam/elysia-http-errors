@@ -2,9 +2,28 @@ import { httpErrors } from "dist"
 import Elysia from "elysia"
 
 const app = new Elysia()
-	.use(httpErrors({ mika: (code: number) => ({ code }) }))
+	.use(
+		httpErrors(
+			{
+				mika: (code: number) => ({
+					name: "a",
+					message: "a",
+					status: code,
+				}),
+			},
+			{
+				custom: ({ error }) => ({
+					name: error.name,
+					message: error.message,
+					code: error.status,
+				}),
+			},
+		),
+	)
 	.get("/", ({ createError }) => {
-		createError("mika", 404)
+		return createError("mika", 404)
 	})
 
-app.listen(3000)
+app.listen(3000, (server) => {
+	console.log(`> App đang chạy tại: ${server.url.origin}`)
+})
