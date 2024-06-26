@@ -1,6 +1,6 @@
 {
   "name": "elysia-http-errors",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Errors handler for ElysiaJS",
   "author": "Misono Mika <misonomika@elainateam.io>",
   "license": "MIT",
