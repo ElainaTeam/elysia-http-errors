@@ -1,4 +1,4 @@
-import { httpErrors, Errors } from "dist"
+import { httpErrors, BadRequest } from "dist"
 import Elysia from "elysia"
 
 const app = new Elysia()
@@ -23,7 +23,7 @@ const app = new Elysia()
 		return createError("mika", 404)
 	})
 	.get("/test", () => {
-		throw new Errors.BadRequest("This is a bad request.")
+		throw new BadRequest("This is a bad request.")
 	})
 
 app.listen(3000, (server) => {

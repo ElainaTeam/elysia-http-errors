@@ -13,7 +13,7 @@ bun add elysia-http-errors
 > Must be used before controllers or anything that will need to have error handling.
 
 ```js
-import { httpErrors, Errors } from "elysia-http-errors"
+import { httpErrors, BadRequest } from "elysia-http-errors"
 import Elysia from "elysia"
 
 const app = new Elysia()
@@ -38,7 +38,7 @@ const app = new Elysia()
 		return createError("LoginRequired", 401)
 	})
     .get("/test", () => {
-		throw new Errors.BadRequest('This is a bad request.')
+		throw new BadRequest('This is a bad request.')
 	})
 
 app.listen(5500, (server) => {
@@ -62,10 +62,10 @@ app.listen(5500, (server) => {
 ## 3. Customize Errors.
 - Need more customiziation? You can extends `APIError` class.
 ```js
-import { Errors, httpError } from "elysia-http-errors"
+import { APIError, httpError } from "elysia-http-errors"
 import Elysia from "elysia"
 
-export class CustomError extends Errors.APIError {
+export class CustomError extends APIError {
     constructor(message: string) {
         super(message, 400, 'YourCustomError')
     }
